@@ -1,0 +1,8 @@
+name: RememberHighestOnline
+main: io.github.CMD_BLOCK.RememberHighestOnline.Main
+version: 1.0
+author: CMD丶BLOCK
+commands:
+  rho:
+    usage: /rho
+    description: Reload the RememberHighestOnline
