@@ -30,7 +30,7 @@ public class Main extends JavaPlugin implements Listener {
 				sender.sendMessage("§a重载成功");
 				return true;
 			}
-			sender.sendMessage("‰4你没有使用此命令的权限");
+			sender.sendMessage("§4你没有使用此命令的权限");
 			return true;
 		}
 		return false;
@@ -39,11 +39,13 @@ public class Main extends JavaPlugin implements Listener {
 	public void onPlayerJoin(PlayerJoinEvent event){
 		int online = Bukkit.getServer().getOnlinePlayers().size();
 		int Highest = this.getConfig().getInt("Highest");
-		String msg = this.getConfig().getString("Message").replaceAll("%max%",online+"");
-		if(online>Highest && this.getConfig().getBoolean("sendMessageToAllPlayer")){
-			Bukkit.broadcastMessage(msg);
+		if(online>Highest){
+			String msg = this.getConfig().getString("Message").replaceAll("%max%",online+"");
+			if(this.getConfig().getBoolean("sendMessageToAllPlayer")){
+				Bukkit.broadcastMessage(msg);
+			}
+			this.getConfig().set("Highest", online);
+			this.saveConfig();
 		}
-		this.getConfig().set("Highest", online);
-		this.saveConfig();
 	}
 }
